@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Тортики для препода — донат</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;padding:20px;background:#f7f7f8;color:#111}
+  .container{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
+  .card{background:#fff;border-radius:8px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.06)}
+  iframe.widget-frame{width:100%;height:420px;border:0;border-radius:6px}
+  .sidebar{display:flex;flex-direction:column;gap:12px}
+  .donate-btn{display:inline-block;padding:12px 16px;background:#ff6b6b;color:#fff;text-decoration:none;border-radius:8px;text-align:center;font-weight:600}
+  .muted{font-size:13px;color:#666}
+  @media(max-width:800px){.container{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h1>Тортик-бар</h1>
+<p class="muted">Вставь сюда виджет DonationAlerts и ссылку на страницу доната. Виджет обычно обновляется сам — если нет, включи авто-рефреш (ниже).</p>
+
+<div class="container">
+  <main class="card">
+    <!-- ---- ВАЖНО: сюда вставь код виджета DonationAlerts ---- -->
+    <!-- Если DA дал iframe-URL: раскомментируй строку ниже и вставь URL -->
+    <iframe id="da-widget" class="widget-frame" src="https://www.donationalerts.com/widget/goal/9057358?token=K6CsifKHovsfvJzn14ch" allow="autoplay; clipboard-write"></iframe>
+
+    <!-- Если DA дал <script>... (JS-виджет) — просто вставь его вместо iframe -->
+    <!-- Пример: -->
+	<!-- <script src="https://www.donationalerts.com/widget/goal/9057358?token=K6CsifKHovsfvJzn14ch"></script> -->
+    <div class="muted">Здесь появится виджет (вставь iframe или JS-embed от DonationAlerts).</div>
+  </main>
+
+  <aside class="card sidebar">
+    <div>
+      <a id="donate-link" class="donate-btn" href="https://www.donationalerts.com/r/hatf1sh" target="_blank" rel="noopener noreferrer">Пожертвовать на торт</a>
+      <div class="muted">Откроется страница доната в новой вкладке.</div>
+    </div>
+
+    <div>
+      <strong>Последние донаты</strong>
+      <div class="muted">Если у тебя есть отдельный виджет «последние донаты», вставь его сюда (iframe или скрипт).</div>
+    </div>
+
+    <div>
+      <strong>Примечание по безопасности</strong>
+      <div class="muted">Ни в коем случае не выкладывай в публичный репозиторий `client_secret`, токены или другие секреты. Публичный embed/iframe — безопасно.</div>
+    </div>
+  </aside>
+</div>
+
+<!-- Опционально: авто-перезагрузка iframe (если виджет почему-то не обновляется сам)
+     Установи INTERVAL_MS > 0 (мс), например 60000 для 60 секунд -->
+<script>
+(function(){
+  const iframe = document.getElementById('da-widget');
+  const INTERVAL_MS = 0; // 0 = выключено
+  if (iframe && INTERVAL_MS > 0) {
+    setInterval(()=> { iframe.src = iframe.src; }, INTERVAL_MS);
+  }
+})();
+</script>
+</body>
+</html>
+
